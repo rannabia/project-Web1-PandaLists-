@@ -1,4 +1,4 @@
-Projeto de Desenvolvimento Web 1 - 
+Projeto de Desenvolvimento Web 1 - PandaLists
 #Grupo:
     - Ranna Beatriz de Lima Lisboa; 
     - Pedro Henrique Teixeira e Silva;
@@ -11,7 +11,6 @@ Projeto de Desenvolvimento Web 1 -
     - As páginas HTML Inicial, menu e lista;
     - styles.css;
     - verificar como salvar os dados do usuário e efetuar login;
-    - Nome do projeto;
     - Como conectar todas as páginas (link com buttom para cadastrar e logar) e depois de logar e para a página de menu;
     - No menu ter a opção de ver suas to-do lists e criar mais;
     - Ver as trilhas de CSS, HTML, JS e W3.CSS no W3schools;

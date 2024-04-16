@@ -5,7 +5,7 @@ Projeto de Desenvolvimento Web 1 -
 
 ##Ideia:
     - Criar um site em que você realiza o seu cadastro e faz o login para poder criar várias listas, como lista de compras, lista de afazeres, 
-    ToDo Lists, lista de estudos, etc.
+    lista de estudos, etc.
 
 ###Pendências:
     - As páginas HTML Inicial, menu e lista;
@@ -17,3 +17,4 @@ Projeto de Desenvolvimento Web 1 -
     - Ver as trilhas de CSS, HTML, JS e W3.CSS no W3schools;
     - Atualizar o README;
     - Comentários; /*  */
+    - Adicionar prints da ToDo List no Home;

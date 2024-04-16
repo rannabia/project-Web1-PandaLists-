@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('explosion.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+h1 {
+    text-align: center;
+    color: rgb(132, 13, 168);
+}
+.block h4 {
+    color: #7e0463; 
+    font-size: 1.5rem; 
+    margin-bottom: 10px; 
+}
+.block p {
+    color: #a312f7; /* Define a cor do texto do parágrafo */
+    font-size: 1rem; /* Define o tamanho da fonte do parágrafo */
+    margin-bottom: 15px; /* Adiciona espaçamento abaixo do parágrafo */
+}
+.container {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    text-align: center;
+    background-color: rgba(250, 160, 235, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.block {
+    text-align: center;
+    width: 50%; 
+    background-color: rgba(250, 160, 235, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    width: 15%;
+    padding: 10px;
+    background-color: #a5128c;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #e76ebf;
+}

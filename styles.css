@@ -20,27 +20,37 @@ h1 {
     margin-bottom: 10px; 
 }
 .block p {
-    color: #a312f7; /* Define a cor do texto do parágrafo */
-    font-size: 1rem; /* Define o tamanho da fonte do parágrafo */
-    margin-bottom: 15px; /* Adiciona espaçamento abaixo do parágrafo */
-}
-.container.lista-coisas {
-    width: 400px;
-    background-color: rgba(250, 160, 235, 0.7); 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    color: #a312f7; 
+    font-size: 1rem; 
+    margin-bottom: 15px; 
 }
 .titletop {
     position: fixed;
     top: 0; 
-    left: 0; 
-    width: 100%; 
+    left: 0;
+    right: 0; 
+    width: 50%; 
     text-align: center;
+    margin: auto;
     background-color: rgba(250, 160, 235, 0.7); 
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); 
+}
+#lists-container {
+    top: 0; 
+    left: 0; 
+    width: 40%; 
+    text-align: center;
+    margin: auto;
+    background-color: rgba(250, 160, 235, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+}
+ul {
+    list-style-type: none; /* Remove o estilo de marcadores padrão */
+    padding: 0; /* Remove o padding padrão */
+    margin: 0; /* Remove a margem padrão */
 }
 .container {
     text-align: center;

@@ -8,14 +8,20 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <div class="titletop">
-        <h1>Menu</h1>
-        <div id="lists-container"></div>
-        <button onclick="createNewList()">Criar Nova Lista</button>
-    </div>
-
+    <div class="titletop"><h1>Listas</h1></div>
+    <div id="lists-container"></div>
+<div id="new-list-form" style="display: none;">
+    <!--Necessário resolver para que apareça a opção de cadastrar uma nova lista
+    Problema no display: none-->
+    <h2>Adicionar Nova Lista</h2>
+    <form onsubmit="addNewList(event)">
+        <label for="new-list-name">Nome da Lista:</label>
+        <input type="text" id="new-list-name" required>
+        <label for="new-list-items">Itens:</label>
+        <textarea id="new-list-items" rows="3"></textarea>
+        <button type="submit">Adicionar Lista</button>
+    </form>
+</div>
     <script src="script.js"></script>
-    
-
 </body>
 </html>

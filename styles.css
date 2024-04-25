@@ -24,12 +24,41 @@ h1 {
     font-size: 1rem; 
     margin-bottom: 15px; 
 }
-.titletop {
+.titletop { 
     position: fixed;
-    top: 0; 
+    top: 0;
     left: 0;
-    right: 0; 
-    width: 50%; 
+    right: 0;
+    width: 25%;  
+    text-align: center;
+    margin: auto;
+    background-color: rgba(250, 160, 235, 0.7); 
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); 
+}
+.main-content {
+    width: 30%; /* Largura do conteúdo */
+    margin: 20px auto; /* Centraliza horizontalmente e adiciona espaço na parte superior */
+    padding: 20px; /* Espaçamento interno */
+    text-align: center; /* Alinha o texto ao centro */
+    border: 1px solid #ff94e8; /* Adiciona uma borda para visualização */
+    background-color: rgba(35, 231, 238, 0.5); 
+}
+.menu-icon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;  
+    text-align: left;
+    margin: auto;
+}
+.container-bot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 30%;
     text-align: center;
     margin: auto;
     background-color: rgba(250, 160, 235, 0.7); 
@@ -40,7 +69,7 @@ h1 {
 #lists-container {
     top: 0; 
     left: 0; 
-    width: 40%; 
+    width: 20%; 
     text-align: center;
     margin: auto;
     background-color: rgba(250, 160, 235, 0.7); 
@@ -80,4 +109,48 @@ button {
 }
 button:hover {
     background-color: #e76ebf;
+}
+.sidenav {
+    display: none; /* Esconde a barra lateral por padrão */
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: rgba(35, 231, 238, 0.5); 
+    overflow-x: hidden;
+    padding-top: 60px; /* Ajusta o espaçamento para deixar espaço para o título */
+    transition: 0.5s; /* Adiciona uma transição suave ao mostrar/ocultar a barra lateral */
+}
+
+.show {
+    display: block; /* Mostra a barra lateral quando a classe 'show' está presente */
+}
+
+.sidenav h2 {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Cor do título do menu */
+    border-bottom: 1px solid #ddd; /* Linha separadora */
+}
+
+.sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidenav ul li {
+    padding: 10px;
+}
+
+.sidenav ul li a {
+    text-decoration: none;
+    color: #666; /* Cor dos itens do menu */
+}
+
+.sidenav ul li a:hover {
+    color: #000; /* Cor dos itens do menu ao passar o mouse */
+    background-color: #ddd; /* Cor de fundo ao passar o mouse */
 }

@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('explosion.jpg'); 
+    background-image: url('../assets/explosion.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;

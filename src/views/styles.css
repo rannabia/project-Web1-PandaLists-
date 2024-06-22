@@ -5,7 +5,7 @@ body {
     display: flex;
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
-    background-image: url('explosion.jpg'); 
+    background-image: url('../assets/explosion.jpg'); 
     background-size: cover;
     background-position: center;
     height: 100vh;

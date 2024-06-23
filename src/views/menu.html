@@ -17,24 +17,21 @@
 
     <div class="titletop">
         <h1>Menu</h1>
+        <button onclick="addNewList()">Adicionar nova lista</button>
         <span class="menu-icon" onclick="toggleSidebar()">☰</span> <!-- Ícone para abrir a barra lateral -->
     </div>
     <div class="main-content"></div>
-
-
-    <div class="container-bot">
-        <div id="new-list-form" style="display: block;">
-            <h2>Adicionar Nova Lista</h2>
-            <form onsubmit="addNewList(event)">
-                <label for="new-list-name">Nome da Lista:</label>
-                <input type="text" id="new-list-name" required>
-                <label for="new-list-items">Itens:</label>
-                <textarea id="new-list-items" rows="3"></textarea>
-                <button type="submit">Adicionar Lista</button>
-            </form>
-        </div>
+    <div id="add-list-form" style="display: none;">
+        <form onsubmit="addNewList(event)">
+            <label for="new-list-name">Nome da Lista:</label>
+            <input type="text" id="new-list-name" required>
+            <label for="new-list-items">Itens da Lista (separados por linhas):</label>
+            <textarea id="new-list-items" required></textarea>
+            <button type="submit">Adicionar Lista</button>
+            <button type="button" onclick="hideAddListForm()">Cancelar</button>
+        </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../services/script.js"></script>
 </body>
 </html>

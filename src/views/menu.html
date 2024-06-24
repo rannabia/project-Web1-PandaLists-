@@ -20,7 +20,7 @@
         <button onclick="addNewList()">Adicionar nova lista</button>
         <span class="menu-icon" onclick="toggleSidebar()">☰</span> <!-- Ícone para abrir a barra lateral -->
     </div>
-    <div class="main-content"></div>
+    <div class="main-content hidden" id="lists-container"></div>
     <div id="add-list-form" style="display: none;">
         <form onsubmit="addNewList(event)">
             <label for="new-list-name">Nome da Lista:</label>

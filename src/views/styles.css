@@ -58,6 +58,9 @@ h1 {
     border: 1px solid #ff94e8; /* Adiciona uma borda para visualização */
     background-color: rgba(35, 231, 238, 0.5); 
 }
+.hidden {
+    display: none;
+}
 .menu-icon {
     position: fixed;
     top: 0;

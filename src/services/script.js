@@ -22,42 +22,9 @@ function displayUserListsSidebar() {
 }
 
 // Função para carregar e exibir as listas do usuário no container principal
-function displayUserLists() {
-    const listsContainer = document.getElementById('lists-container');
-    listsContainer.innerHTML = '';
-
-    userLists.forEach(list => {
-        const listElement = document.createElement('div');
-        listElement.innerHTML = `
-            <h2>${list.name}</h2>
-            <ul>
-                ${list.items.map(item => `<li>${item}</li>`).join('')}
-            </ul>
-            <button onclick="editList(${list.id})">Editar</button>
-            <button onclick="deleteList(${list.id})">Excluir</button>
-        `;
-        listsContainer.appendChild(listElement);
-    });
-}
-
-// Função para adicionar nova lista
-function addNewList(event) {
-    event.preventDefault();
-    const newListName = document.getElementById('new-list-name').value;
-    const newListItems = document.getElementById('new-list-items').value.split('\n').filter(item => item.trim() !== '');
-    const newList = { id: userLists.length + 1, name: newListName, items: newListItems };
-    userLists.push(newList);
-    displayUserListsSidebar();
-    displayUserLists();
-}
-
-// Função para abrir uma lista específica no centro da página
-function openList(listId) {
-    // Encontre a lista correspondente pelo ID
+function displaySingleList(listId) {
     const list = userLists.find(list => list.id === listId);
-
     if (list) {
-        // Exiba a lista no centro da página
         const mainContent = document.querySelector('.main-content');
         mainContent.innerHTML = `
             <div class="list-details">
@@ -69,11 +36,33 @@ function openList(listId) {
                 <button onclick="deleteList(${list.id})">Excluir</button>
             </div>
         `;
+        mainContent.classList.remove('hidden');
     } else {
         alert("Lista não encontrada!");
     }
 }
-
+//Função auxiliar
+function saveList(listIndex, name, items) {
+    const newList = { id: listIndex + 1, name: name, items: items };
+    if (listIndex >= 0) {
+        userLists[listIndex] = newList;
+    } else {
+        userLists.push(newList);
+    }
+    displayUserListsSidebar(); // Atualiza o menu lateral
+    displayUserLists(); // Atualiza as listas exibidas no centro
+}
+//Função para adicionar listas
+function addNewList() {
+    const newListName = prompt("Digite o nome da nova lista:");
+    if (newListName) {
+        const newListItems = prompt("Digite os itens da nova lista (separados por vírgula):");
+        if (newListItems) {
+            const itemsArray = newListItems.split(',').map(item => item.trim());
+            saveList(userLists.length, newListName, itemsArray);
+        }
+    }
+}
 
 // Função para editar uma lista específica
 function editList(listId) {
@@ -89,6 +78,7 @@ function editList(listId) {
                 userLists[listIndex] = { ...list, name: newListName, items: newListItems.split(',').map(item => item.trim()) };
                 displayUserListsSidebar(); // Atualiza o menu lateral
                 displayUserLists(); // Atualiza as listas exibidas no centro
+                displaySingleList(listId); // Atualiza a lista no centro da página
             }
         }
     } else {
@@ -106,6 +96,9 @@ function deleteList(listId) {
         const mainContent = document.querySelector('.main-content');
         mainContent.innerHTML = ''; // Limpa o conteúdo da área principal
     }
+}
+function openList(listId) {
+    displaySingleList(listId);
 }
 // Exibir as listas do usuário quando a página carrega
 window.onload = function() {

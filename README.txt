@@ -10,5 +10,4 @@
 
 ## Pendências:
     - Back-end;
-    - Página menu;
-    - Adicionar prints da ToDo List no Home;
+

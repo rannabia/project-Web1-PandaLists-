@@ -1,8 +1,19 @@
 // Simulação de dados das listas do usuário
 let userLists = [
-    { id: 1, name: "Lista de Compras", items: ["Pão", "Leite", "Ovos", "Arroz"] },
-    { id: 2, name: "Tarefas do Dia", items: ["Estudar", "Fazer exercícios", "Reunião às 14h"] }
+    { id: 1, name: "Lista de Compras", items: [{ name: "Pão", done: false }, { name: "Leite", done: false }, { name: "Ovos", done: false }, { name: "Arroz", done: false }, { name: "Banana", done: false}] },
+    { id: 2, name: "Tarefas do Dia", items: [{ name: "Estudar", done: false }, { name: "Fazer exercícios", done: false }, { name: "Reunião às 14h", done: false }, { name: "Lavar a louça", done: false}, { name: "Lavar o banheiro", done: false}] },
+    { id: 3, name: "Lista de Leitura", items: [{ name: "Trono de Vidro", done: false}, { name: "Coroa da Meia-Noite", done: false}, { name: "Os Bridgertons: Um beijo inesquecível", done: false}] }
 ];
+function toggleItemDone(listId, itemName) {
+    const list = userLists.find(list => list.id === listId);
+    if (list) {
+        const item = list.items.find(item => item.name === itemName);
+        if (item) {
+            item.done = !item.done;
+            displaySingleList(listId); // Atualiza a lista no centro da página
+        }
+    }
+}
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('show'); // Adiciona ou remove a classe 'show' da barra lateral
@@ -30,7 +41,12 @@ function displaySingleList(listId) {
             <div class="list-details">
                 <h2>${list.name}</h2>
                 <ul>
-                    ${list.items.map(item => `<li><input type="checkbox">${item}</li>`).join('')}
+                    ${list.items.map(item => `
+                        <li class="${item.done ? 'done' : ''}">
+                            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleItemDone(${listId}, '${item.name}')">
+                            ${item.name}
+                        </li>
+                    `).join('')}
                 </ul>
                 <button onclick="editList(${list.id})">Editar</button>
                 <button onclick="deleteList(${list.id})">Excluir</button>
@@ -52,13 +68,14 @@ function saveList(listIndex, name, items) {
     displayUserListsSidebar(); // Atualiza o menu lateral
     displayUserLists(); // Atualiza as listas exibidas no centro
 }
+
 //Função para adicionar listas
 function addNewList() {
     const newListName = prompt("Digite o nome da nova lista:");
     if (newListName) {
         const newListItems = prompt("Digite os itens da nova lista (separados por vírgula):");
         if (newListItems) {
-            const itemsArray = newListItems.split(',').map(item => item.trim());
+            const itemsArray = newListItems.split(',').map(item => ({ name: item.trim(), done: false }));
             saveList(userLists.length, newListName, itemsArray);
         }
     }
@@ -66,16 +83,19 @@ function addNewList() {
 
 // Função para editar uma lista específica
 function editList(listId) {
-    // Encontre a lista correspondente pelo ID
     const listIndex = userLists.findIndex(list => list.id === listId);
 
     if (listIndex !== -1) {
         const list = userLists[listIndex];
         const newListName = prompt("Digite o novo nome da lista:", list.name);
         if (newListName) {
-            const newListItems = prompt("Digite os novos itens da lista (separados por vírgula):", list.items.join(','));
+            const newListItems = prompt("Digite os novos itens da lista (separados por vírgula):", list.items.map(item => item.name).join(','));
             if (newListItems) {
-                userLists[listIndex] = { ...list, name: newListName, items: newListItems.split(',').map(item => item.trim()) };
+                userLists[listIndex] = {
+                    ...list,
+                    name: newListName,
+                    items: newListItems.split(',').map(item => ({ name: item.trim(), done: false }))
+                };
                 displayUserListsSidebar(); // Atualiza o menu lateral
                 displayUserLists(); // Atualiza as listas exibidas no centro
                 displaySingleList(listId); // Atualiza a lista no centro da página

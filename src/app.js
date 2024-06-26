@@ -46,15 +46,12 @@ function validateToken(req, res, next) {
 app.get('/', (req, res) => { res.render(path.join(__dirname + "/api/views/index")); });
 app.get('/login', (req, res) => { res.sendFile(path.join(__dirname + "/api/views/login.html")); });
 app.get('/register', (req, res) => { res.sendFile(path.join(__dirname + "/api/views/forms.html")); });
-app.get('/menu', validateToken, (req, res,) => { 
-    res.cookie("user", req.user, {httpOnly: true});
-    res.sendFile(path.join(__dirname + "/api/views/menu.html")); 
-});
+app.get('/menu', validateToken, (req, res,) => { res.sendFile(path.join(__dirname + "/api/views/menu.html")); });
 
 app.post('/register', userController.register);
 app.post('/login', userController.login);
 
-app.post('/new-list/', listController.addNewList);
+app.post('/new-list', listController.addNewList);
 
 // Server listen 
 app.listen(PORT, (err) => {

@@ -10,12 +10,4 @@
 
 ## Pendências:
     - Back-end;
-    - Página home e menu;
-    - styles.css;
-    - Como conectar todas as páginas (link com buttom para cadastrar e logar) e depois de logar ir para a página de menu;
-    - No menu ter a opção de ver suas to-do lists e criar mais;
-    - Atualizar o README;
-    - Comentários; /*  */ CSS
-    - Adicionar prints da ToDo List no Home;
 
-sudo systemctl start mongod

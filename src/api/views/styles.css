@@ -5,7 +5,7 @@ body {
     display: flex;
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
-    background-image: url('../assets/explosion.jpg'); 
+    background-image: url('assets/explosion.jpg'); 
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -211,4 +211,33 @@ button:hover {
 .sidenav ul li a:hover {
     color: #e388ff; /* Cor dos itens do menu ao passar o mouse */
     background-color: #7badf791; /* Cor de fundo ao passar o mouse */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.5rem; 
+    color: #3d0534; /* Cor dos itens do menu ao passar o mouse */
+}
+
+input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff02ea;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff02ea;
+    border-radius: 5px;
+    box-sizing: border-box;
 }

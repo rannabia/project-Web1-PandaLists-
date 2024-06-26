@@ -1,0 +1,23 @@
+{
+  "name": "pandalists",
+  "version": "0.0.1",
+  "description": "projeto web1 pandaslist",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "home/flurialforal/project-Web1-PandaLists-/.git"
+  },
+  "author": "Pedro Silva, Ranna Lisboa",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3",
+    "path": "^0.12.7"
+  }
+}

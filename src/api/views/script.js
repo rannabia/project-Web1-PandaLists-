@@ -16,6 +16,7 @@ function toggleItemDone(listId, itemName) {
 }
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
+    hideAddListForm();
     sidebar.classList.toggle('show'); // Adiciona ou remove a classe 'show' da barra lateral
     console.log('Sidebar toggled'); // Verifica se a função está sendo chamada
 }
@@ -71,6 +72,7 @@ function saveList(listIndex, name, items) {
 
 //Função para adicionar listas
 function addNewList() {
+    let xhttp = new XMLHttpRequest();
     const newListName = prompt("Digite o nome da nova lista:");
     if (newListName) {
         const newListItems = prompt("Digite os itens da nova lista (separados por vírgula):");
@@ -125,3 +127,11 @@ window.onload = function() {
     displayUserListsSidebar();
     displayUserLists();
 };
+
+function showAddListForm() {
+    document.getElementById('add-list-form').style.display = 'block';
+}
+
+function hideAddListForm() {
+    document.getElementById('add-list-form').style.display = 'none';
+}

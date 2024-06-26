@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página inicial</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
 <div class="titletop1">
     <h1> Bem vindo(a) ao PandaLists!</h1>
-    <a href="login.html"><button>Login</button></a>
-    <a href="forms.html"><button>Cadastro</button></a>
+    <form action="http://localhost:3000/login" method="get">
+        <button type="submit">Login</button>
+    </form>
+    <form action="http://localhost:3000/register" method="get">
+        <button type="submit">Registrar</button>
+    </form>
 </div>
 <div class="block">
     <h4>Você está pronto para transformar suas tarefas diárias em algo mais organizado, eficiente e gratificante? </h4>

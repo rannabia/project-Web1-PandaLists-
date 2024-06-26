@@ -17,3 +17,5 @@
     - Atualizar o README;
     - Comentários; /*  */ CSS
     - Adicionar prints da ToDo List no Home;
+
+sudo systemctl start mongod

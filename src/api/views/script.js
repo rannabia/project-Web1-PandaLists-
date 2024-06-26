@@ -5,6 +5,7 @@ let userLists = [
 ];
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
+    hideAddListForm();
     sidebar.classList.toggle('show'); // Adiciona ou remove a classe 'show' da barra lateral
     console.log('Sidebar toggled'); // Verifica se a função está sendo chamada
 }
@@ -54,12 +55,16 @@ function saveList(listIndex, name, items) {
 }
 //Função para adicionar listas
 function addNewList() {
+    let xhttp = new XMLHttpRequest();
     const newListName = prompt("Digite o nome da nova lista:");
     if (newListName) {
         const newListItems = prompt("Digite os itens da nova lista (separados por vírgula):");
         if (newListItems) {
             const itemsArray = newListItems.split(',').map(item => item.trim());
-            saveList(userLists.length, newListName, itemsArray);
+            xhttp.open("POST", 'http://localhost:3000/new-list');
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify({ "name": newListName, "items": itemsArray }));
+            //saveList(userLists.length, newListName, itemsArray);
         }
     }
 }
@@ -105,3 +110,11 @@ window.onload = function() {
     displayUserListsSidebar();
     displayUserLists();
 };
+
+function showAddListForm() {
+    document.getElementById('add-list-form').style.display = 'block';
+}
+
+function hideAddListForm() {
+    document.getElementById('add-list-form').style.display = 'none';
+}

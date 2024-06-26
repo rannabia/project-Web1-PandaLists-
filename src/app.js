@@ -1,9 +1,14 @@
 // 3rd Party Modules
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
+const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 // Local Modules
-const authRoute = require('./routes/authRoute');
+const userController = require('./api/controllers/userController');
+const listController = require('./api/controllers/listController');
 
 // Server Initialization
 const app = express();
@@ -11,19 +16,51 @@ const PORT = 3000;
 
 // Middleware
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+app.set('view engine', 'html');
+app.use(express.static(path.join(__dirname + "/api/views")));
+
+mongoose.connect('mongodb://localhost:27017/pandalists');
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('Conectado ao MongoDB');
+});
+
+function validateToken(req, res, next) {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(403).send('Token não pode ser vazio\n');
+    }
+
+    const user = jwt.verify(token, 'secret');
+
+    req.user = user;
+    next();
+}
 
 // Routing
-app.use('/auth', authRoute);
+app.get('/', (req, res) => { res.render(path.join(__dirname + "/api/views/index")); });
+app.get('/login', (req, res) => { res.sendFile(path.join(__dirname + "/api/views/login.html")); });
+app.get('/register', (req, res) => { res.sendFile(path.join(__dirname + "/api/views/forms.html")); });
+app.get('/menu', validateToken, (req, res,) => { 
+    res.cookie("user", req.user, {httpOnly: true});
+    res.sendFile(path.join(__dirname + "/api/views/menu.html")); 
+});
 
-// Server listen and database connection
+app.post('/register', userController.register);
+app.post('/login', userController.login);
+
+app.post('/new-list/', listController.addNewList);
+
+// Server listen 
 app.listen(PORT, (err) => {
     if(err) {
         console.log('Erro ao inicializar o servidor');
     }
-
-    mongoose.connect('mongodb://localhost:27017/pandalists')
-    .then(() => console.log('MongoDB conectado com sucesso'))
-    .catch(err => console.log(err));
 
     console.log(`servidor iniciado com sucesso, aplicação escutando na porta ${PORT}`);
 });

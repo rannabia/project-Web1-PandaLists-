@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="http://localhost:3000/register" method="post" class="user">
+        <form method="POST" action="/register" class="user" id="registerForm">
             <h1>Cadastro de Usuário</h1>
 
             <div class="form-group">
@@ -24,11 +24,15 @@
 
             <div class="form-group">
                 <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" maxlength="20" size="20" required>
+                <input type="password" id="password" name="password" required>
             </div>
 
-            <button type="submit">Cadastrar</buttom>
+            <button type="submit">Registrar</button>
         </form>
     </div>
+
+    <script>
+        
+    </script>
 </body>
 </html>

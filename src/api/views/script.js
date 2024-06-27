@@ -87,8 +87,6 @@ function saveList(listIndex, name, items) {
         userLists.push(newList);
     }
 
-    displayUserListsSidebar(); // Atualiza o menu lateral
-    displayUserLists(); // Atualiza as listas exibidas no centro
 }
 
 //Função para adicionar listas
@@ -101,6 +99,9 @@ function addNewList() {
             saveList(userLists.length, newListName, itemsArray);
         }
     }
+
+    displayUserListsSidebar(); // Atualiza o menu lateral
+    displayUserLists(); // Atualiza as listas exibidas no centro
 }
 
 // Função para editar uma lista específica
@@ -135,10 +136,11 @@ function deleteList(listId) {
     if (confirmDelete) {
         userLists = userLists.filter(list => list.id !== listId);
 
-        displayUserListsSidebar(); // Atualiza o menu lateral
-        displayUserLists(); // Atualiza as listas exibidas no centro
         const mainContent = document.querySelector('.main-content');
         mainContent.innerHTML = ''; // Limpa o conteúdo da área principal
+
+        displayUserListsSidebar(); // Atualiza o menu lateral
+        displayUserLists(); // Atualiza as listas exibidas no centro
     }
 }
 function openList(listId) {

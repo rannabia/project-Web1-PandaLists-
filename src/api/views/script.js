@@ -1,9 +1,6 @@
-// Simulação de dados das listas do usuário
-let userLists = [
-    { id: 1, name: "Lista de Compras", items: [{ name: "Pão", done: false }, { name: "Leite", done: false }, { name: "Ovos", done: false }, { name: "Arroz", done: false }, { name: "Banana", done: false}] },
-    { id: 2, name: "Tarefas do Dia", items: [{ name: "Estudar", done: false }, { name: "Fazer exercícios", done: false }, { name: "Reunião às 14h", done: false }, { name: "Lavar a louça", done: false}, { name: "Lavar o banheiro", done: false}] },
-    { id: 3, name: "Lista de Leitura", items: [{ name: "Trono de Vidro", done: false}, { name: "Coroa da Meia-Noite", done: false}, { name: "Os Bridgertons: Um beijo inesquecível", done: false}] }
-];
+// Dados das listas do usuário armazenados na sessão
+let userLists = [];
+
 function toggleItemDone(listId, itemName) {
     const list = userLists.find(list => list.id === listId);
     if (list) {
@@ -14,11 +11,33 @@ function toggleItemDone(listId, itemName) {
         }
     }
 }
+
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     hideAddListForm();
     sidebar.classList.toggle('show'); // Adiciona ou remove a classe 'show' da barra lateral
     console.log('Sidebar toggled'); // Verifica se a função está sendo chamada
+}
+
+// Função para exibir as listas do usuário
+function displayUserLists() {
+    const listsContainer = document.getElementById('lists-container');
+    listsContainer.innerHTML = '';
+    userLists.forEach(list => {
+        const listElement = document.createElement('div');
+        listElement.innerHTML = `
+            <p>${list.name}</p>
+            <h2>${list.name}</h2>
+            <ul>
+                ${list.items.map(item => `<li>${item}</li>`).join('')}
+                ${list.items.map(item => `<li><input type="checkbox">${item}</li>`).join('')}
+            </ul>
+            <button onclick="editList(${list.id})">Editar</button>
+            <button onclick="showEditListForm(${list.id})">Editar</button>
+            <button onclick="deleteList(${list.id})">Excluir</button>
+        `;
+        listsContainer.appendChild(listElement);
+    });
 }
 
 // Função para exibir as listas do usuário no side navigation
@@ -61,18 +80,19 @@ function displaySingleList(listId) {
 //Função auxiliar
 function saveList(listIndex, name, items) {
     const newList = { id: listIndex + 1, name: name, items: items };
+
     if (listIndex >= 0) {
         userLists[listIndex] = newList;
     } else {
         userLists.push(newList);
     }
+
     displayUserListsSidebar(); // Atualiza o menu lateral
     displayUserLists(); // Atualiza as listas exibidas no centro
 }
 
 //Função para adicionar listas
 function addNewList() {
-    let xhttp = new XMLHttpRequest();
     const newListName = prompt("Digite o nome da nova lista:");
     if (newListName) {
         const newListItems = prompt("Digite os itens da nova lista (separados por vírgula):");
@@ -98,6 +118,7 @@ function editList(listId) {
                     name: newListName,
                     items: newListItems.split(',').map(item => ({ name: item.trim(), done: false }))
                 };
+
                 displayUserListsSidebar(); // Atualiza o menu lateral
                 displayUserLists(); // Atualiza as listas exibidas no centro
                 displaySingleList(listId); // Atualiza a lista no centro da página
@@ -113,6 +134,7 @@ function deleteList(listId) {
     const confirmDelete = confirm("Tem certeza de que deseja excluir esta lista?");
     if (confirmDelete) {
         userLists = userLists.filter(list => list.id !== listId);
+
         displayUserListsSidebar(); // Atualiza o menu lateral
         displayUserLists(); // Atualiza as listas exibidas no centro
         const mainContent = document.querySelector('.main-content');
@@ -130,8 +152,12 @@ window.onload = function() {
 
 function showAddListForm() {
     document.getElementById('add-list-form').style.display = 'block';
+    document.getElementById('add-list-button').style.display = 'block';
+    document.getElementById('cancel-button').style.display = 'block';
 }
 
 function hideAddListForm() {
     document.getElementById('add-list-form').style.display = 'none';
+    document.getElementById('add-list-button').style.display = 'none';
+    document.getElementById('cancel-button').style.display = 'none';
 }

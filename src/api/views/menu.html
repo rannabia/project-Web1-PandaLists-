@@ -17,26 +17,15 @@
 
     <div class="titletop">
         <h1>Menu</h1>
-        <button onclick="showAddListForm()">Adicionar nova lista</button>
+        <button onclick="addNewList()">Adicionar nova lista</button>
         <span class="menu-icon" onclick="toggleSidebar()">☰</span> <!-- Ícone para abrir a barra lateral -->
     </div>
     <div class="main-content hidden" id="lists-container"></div>
     <div id="add-list-form" style="display: none;">
-        <form action="http://localhost:3000/new-list" method="POST">
-
-            <div class="form-group">
-                <label for="new-list-name">Nome da Lista:</label>
-                <input type="text" id="name" required>
-            </div>
-
+        <form onsubmit="addNewList(event)">
             <div class="form-group"></div>
-                <label for="new-list-items">Itens da Lista (separados por linhas):</label>
-                <textarea id="items" required></textarea>
-            </div>
-
-            <div class="form-group"></div>
-                <button type="submit" >Adicionar Lista</button>
-                <button type="button" onclick="hideAddListForm()">Cancelar</button>
+                <button id="add-list-button" type="submit" style="display: none;">Adicionar Lista</button>
+                <button id="cancel-button" type="button" onclick="hideAddListForm()" style="display: none;">Cancelar</button>
             </div>
         </form>
     </div>

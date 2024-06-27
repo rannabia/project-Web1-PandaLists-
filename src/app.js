@@ -5,6 +5,7 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 // Local Modules
 const userController = require('./api/controllers/userController');
@@ -22,6 +23,8 @@ app.use(cookieParser());
 app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname + "/api/views")));
 
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
+  
 mongoose.connect('mongodb://localhost:27017/pandalists');
 
 const db = mongoose.connection;
@@ -36,9 +39,12 @@ function validateToken(req, res, next) {
         return res.status(403).send('Token não pode ser vazio\n');
     }
 
-    const user = jwt.verify(token, 'secret');
+    const userData = jwt.verify(token, 'secret');
 
-    req.user = user;
+    req.session.save(() => {
+        req.session.userData = userData;
+    });
+
     next();
 }
 
@@ -51,7 +57,8 @@ app.get('/menu', validateToken, (req, res,) => { res.sendFile(path.join(__dirnam
 app.post('/register', userController.register);
 app.post('/login', userController.login);
 
-app.post('/new-list', listController.addNewList);
+app.post('/get-lists', listController.getLists);
+app.post('/save-lists', listController.saveLists);
 
 // Server listen 
 app.listen(PORT, (err) => {

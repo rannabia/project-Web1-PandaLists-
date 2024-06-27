@@ -23,7 +23,7 @@ const userController = {
     
             await user.save();
     
-            const token = jwt.sign(user, 'secret', { expiresIn: "1h"});
+            const token = jwt.sign({ "email": user.email, "lists": user.lists }, 'secret', { expiresIn: "1h"});
     
             res.cookie("token", token, {httpOnly: true});
             return res.redirect('/menu');
@@ -41,13 +41,13 @@ const userController = {
             if(!user || user.password !== password) {
                 return res.status(401).send('Email ou senha incorretos');
             }
-            
-            const token = jwt.sign({id: user._id}, 'secret', { expiresIn: "1h"});
+
+            const token = jwt.sign({ "email": user.email, "lists": user.lists }, 'secret', { expiresIn: "1h"});
     
             res.cookie("token", token, {httpOnly: true});
             res.redirect('/menu');
         } catch (err) {
-            return res.status(500).send(err);
+            console.error(err);
         }
     }
 }
